@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Helps the browser identify support for mobile applications -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Title on the browser tab -->
+    <title>WebGIS</title>
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://script.google.com/macros/s/AKfycbxw03LZK6d6uvlFkppPn17YU7ruRV3sNonze54FIzQpq0gNyXZDvDJaop4nXUZz8mRM/exec"></script>
+    <!-- Style for the fullscreen map display -->
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML Block to display the map -->
+    <div id="map"></div>
+
+    <script>
+      // Initialize the map
+      var map = L.map("map").setView([-7.9, 110.45], 10); // lat, long, zoom
+
+      // Define basemap layers
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Annisa &copy; &mdash; 23611102 Satistika UII",
+      });
+
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a>',
+      });
+
+      // Add a default basemap to the map
+      Esri_WorldImagery.addTo(map);
+
+      // Control Layer for switching basemaps
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri World Imagery": Esri_WorldImagery,
+      };
+
+      var overlayMaps = {}; // Empty object for now, can add overlays later
+
+      var layerControl = L.control.layers(baseMaps, overlayMaps, { collapsed: false });
+      layerControl.addTo(map);
+
+      // Marker
+      var marker = L.marker([-7.804, 110.3645]); // you can change the coordinate
+      marker.bindPopup("<b>Hello ! </b> <br> Saya Pohon");
+      marker.addTo(map);
+      marker.openPopup();
+      marker.bindTooltip();
+
+      // Custom marker
+      var customIcon1 = L.icon({
+        iconUrl: "https://www.freeiconspng.com/uploads/maps-icon-11.png",
+        iconSize: [40, 40],
+      });
+      var marker0 = L.marker([-7.6874832621204545, 110.41543590276083], { icon: customIcon1 });
+      marker0.addTo(map);
+
+      var markerApotek = L.marker([-7.839552315475472, 110.31430087291733]); // you can change the coordinate
+      markerApotek.bindPopup("Apotek Bantul 1");
+      markerApotek.addTo(map);
+      markerApotek.openPopup();
+      markerApotek.bindTooltip("5867+5P Bangunjiwo, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek2 = L.marker([-7.893127002417467, 110.33943569577949]); // you can change the coordinate
+      markerApotek2.bindPopup("Apotek Indah Farma & Pengisian Oksigen");
+      markerApotek2.addTo(map);
+      markerApotek2.openPopup();
+      markerApotek2.bindTooltip("484Q+PQ Trirenggo, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek3 = L.marker([-7.881725588163408, 110.33266108633005]); // you can change the coordinate
+      markerApotek3.bindPopup("Apotek K-24 Jendral Sudirman Bantul");
+      markerApotek3.addTo(map);
+      markerApotek3.openPopup();
+      markerApotek3.bindTooltip("489M+83 Bantul, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek4 = L.marker([-7.89339534320416, 110.33872236424189]); // you can change the coordinate
+      markerApotek4.bindPopup("Apotek Aries Farma");
+      markerApotek4.addTo(map);
+      markerApotek4.openPopup();
+      markerApotek4.bindTooltip("484Q+JF Trirenggo, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek5 = L.marker([-7.812457542089293, 110.2707929262973]); // you can change the coordinate
+      markerApotek5.bindPopup("Apotek K-24 Sedayu Bantul");
+      markerApotek5.addTo(map);
+      markerApotek5.openPopup();
+      markerApotek5.bindTooltip("57QC+27 Argomulyo, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek6 = L.marker([-7.876896357745556, 110.33486541095621]); // you can change the coordinate
+      markerApotek6.bindPopup("Apotik Mulia Farma");
+      markerApotek6.addTo(map);
+      markerApotek6.openPopup();
+      markerApotek6.bindTooltip("48FM+6W Bantul, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek7 = L.marker([-7.923531028300865, 110.35069797047365]); // you can change the coordinate
+      markerApotek7.bindPopup("Apotek Patalan");
+      markerApotek7.addTo(map);
+      markerApotek7.openPopup();
+      markerApotek7.bindTooltip("39G2+H6P, Patalan, Jetis, Patalan, Kec. Bantul, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55781");
+
+      var markerApotek8 = L.marker([-7.815075955680554, 110.34866749806524]); // you can change the coordinate
+      markerApotek8.bindPopup("Apotek Bugisan");
+      markerApotek8.addTo(map);
+      markerApotek8.openPopup();
+      markerApotek8.bindTooltip("58MX+XF Ngestiharjo, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+
+      var markerApotek9 = L.marker([-7.952323184623403, 110.38046617107683]); // you can change the coordinate
+      markerApotek9.bindPopup("APOTEK SILUK FARMA");
+      markerApotek9.addTo(map);
+      markerApotek9.openPopup();
+      markerApotek9.bindTooltip("29XJ+35H, Siuk 2, Selopamioro, Kec. Imogiri, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55782");
+
+      var markerApotek10 = L.marker([-7.84666921369323, 110.39077568212095]); // you can change the coordinate
+      markerApotek10.bindPopup("Apotek Amanah");
+      markerApotek10.addTo(map);
+      markerApotek10.openPopup();
+      markerApotek10.bindTooltip("593R+88 Wirokerten, Kabupaten Bantul, Daerah Istimewa Yogyakarta");
+    </script>
+  </body>
+</html>
